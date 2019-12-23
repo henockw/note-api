@@ -5,23 +5,29 @@ import List from './components/List';
 import Note from './components/Note';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showNote: false
-    };
-  }
+constructor() {
+  super();
+  this.state = {
+    showNote: false
+  };
+}
 
-  render() {
-    const { showNote } = this.state;
+toggleNote = () => {
+  this.setState({
+    showNote: ! this.state.showNote
+  });
+}
 
-    return (
-      <div className="App">
-        <Nav />
-        { showNote ? <Note /> : <List /> }
-      </div>
-    );
-  }
+render() {
+  const { showNote } = this.state;
+
+  return (
+    <div className="App">
+      <Nav toggleNote={this.toggleNote} showNote={showNote} />
+      { showNote ? <Note /> : <List /> }
+    </div>
+  );
+}
 }
 
 export default App;
